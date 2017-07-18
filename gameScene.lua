@@ -57,7 +57,6 @@ local function loadEnemys()
 
 		e:setPath(path)
 		table.insert(enemyTable, e)
-
 	end
 
 	for i= 1,10 do
@@ -78,20 +77,7 @@ local function loadEnemys()
 
 		e:setPath(path)
 		table.insert(enemyTable, e)
-
-	end
-
-
-	local e = enemy.new(shooterSheet, sheetInfo:getFrameIndex("enemyBlue4"), 400, 5)
-	e:create(0, 100, mainGroup)
-	physics.addBody(e.ship, {radius=e.ship.width/2.5, isSensor=true})
-	table.insert(enemyTable, e)
-
-	print(display.contentWidth)
-	e:create(display.contentWidth, 100, mainGroup)
-	physics.addBody(e.ship, {radius=e.ship.width/2.5, isSensor=true})
-	table.insert(enemyTable, e)
-	
+	end	
 end
 
 -----------------------------------------------------------
@@ -112,17 +98,13 @@ local function onCollision(event)
 			if(obj1.name == "enemy") then
 
 				obj1.hit(obj2.getPower())
-
 		 	end
 			if(obj2.name == "enemy") then
 
 				obj2.hit(obj1.getPower())
-
 			end
 		end
-
 	end
-
 end
 
 -----------------------------------------------------------
@@ -139,7 +121,7 @@ local function update(event)
 
     if (fireButtonA.down == true) then
 
-    	if counterA > 10 then
+    	if counterA > 5 then
 
 			local shoot = bullet.new(shooterSheet, sheetInfo:getFrameIndex("laserBlue01"), 0, -600, 1)
 			shoot:create(player.ship.x, player.ship.y, "playerLaser")
@@ -148,14 +130,12 @@ local function update(event)
 			playerShotGroup:insert(shoot.image)
 
 			counterA = 0
-
 		end
-
     end
 
     if (fireButtonB.down == true) then
 
-    	if counterB > 10 then
+    	if counterB > 30 then
 
 	    	local shoot = bullet.new(shooterSheet, sheetInfo:getFrameIndex("laserRed01"), 0, -600, 5)
 	    	shoot:create(player.ship.x, player.ship.y, "playerLaser")
@@ -164,7 +144,6 @@ local function update(event)
 	    	playerShotGroup:insert(shoot.image)
 
 	    	counterB = 0
-
 	    end
     end
 
@@ -183,17 +162,13 @@ local function update(event)
 
     		display.remove(enemyTable[i].ship)
     		table.remove(enemyTable, i)
-
     	end
-
     end
 
     for i = #enemyTable, 1, -1 do
 
     	enemyTable[i]:update()
-
     end
-
 end
 
 -----------------------------------------------------------
@@ -256,19 +231,15 @@ function scene:show(event)
 	elseif (phase == "did") then
 
 		physics.start()
-
 	end
-
 end
 
 -----------------------------------------------------------
 function scene:hide(event)
-
 end
 
 -----------------------------------------------------------
 function scene:destroy(event)
-
 end
 
 -----------------------------------------------------------

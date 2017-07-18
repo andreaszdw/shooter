@@ -18,7 +18,7 @@ function starfield.new(total, starsMaxSize, speed)
 		field2 = 0,
 		field3 = 0,
 		speed = speed or 1,
-		starsMaxSize = starsMaxSize or 3
+		starsMaxSize = starsMaxSize or 5
 	}
 	return setmetatable( newStarfield, starfield_mt )
 end
