@@ -32,6 +32,14 @@ local uiGroup = display.newGroup()
 
 local stick
 
+local topText = display.newText( "Hello World!", display.contentWidth/2, 150, "assets/fonts/kenvector_future.ttf", 100 )
+
+local gradient = {
+    type="gradient",
+    color1={1, 1, 1}, color2={0.1, 1, 1}, direction="down"
+}
+
+topText:setFillColor(gradient)
 system.activate("multitouch")
 
 -----------------------------------------------------------
