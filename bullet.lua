@@ -34,7 +34,6 @@ function bullet:create(x, y, name)
     -------------------------------------------------------
     function self.image.getPower()
 
-
     	return self.power
 
 	end

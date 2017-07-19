@@ -124,6 +124,8 @@ local function update(event)
 
     player:update()
 
+    topText.text = #enemyTable
+
 	counterA = counterA + 1
     counterB = counterB + 1
 
@@ -164,7 +166,7 @@ local function update(event)
     	end
     end
 
-    for i = #enemyTable, 1, -1 do
+    --[[for i = #enemyTable, 1, -1 do
 
     	if(enemyTable[i].health < 1) then
 
@@ -176,6 +178,21 @@ local function update(event)
     for i = #enemyTable, 1, -1 do
 
     	enemyTable[i]:update()
+    end]]--
+
+    for i in pairs(enemyTable) do
+
+    	if(enemyTable[i].health < 1) then
+
+    		display.remove(enemyTable[i].ship)
+    		table.remove(enemyTable, i)
+    	end
+    end
+
+    for i in pairs(enemyTable) do
+
+    	enemyTable[i]:update()
+
     end
 end
 
