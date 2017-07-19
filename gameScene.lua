@@ -12,8 +12,8 @@ local bullet = require("bullet")
 local enemy = require("enemy")
 local catmullromspline = require("catmullromspline")
 
-local sheetInfo = require("shooterSheet")
-local shooterSheet = graphics.newImageSheet( "assets/images/shooterSheet.png", sheetInfo:getSheet() )
+local sheetInfo = require("sheet") --("shooterSheet")
+local shooterSheet = graphics.newImageSheet ("assets/images/sheet.png", sheetInfo:getSheet()) --( "assets/images/shooterSheet.png", sheetInfo:getSheet() )
 
 local scene = composer.newScene()
 
@@ -63,7 +63,7 @@ local function loadEnemys()
 
 		local x = i*display.contentHeight/8-20
 		local y = 300
-		local e = enemy.new(shooterSheet, sheetInfo:getFrameIndex("enemyBlue4"), 400, 5)
+		local e = enemy.new(shooterSheet, sheetInfo:getFrameIndex("enemyGreen1"), 400, 5)
 		e:create(x, y, mainGroup)
 		physics.addBody(e.ship, {radius=e.ship.width/2.5, isSensor=true})
 
@@ -137,7 +137,7 @@ local function update(event)
 
     	if counterB > 30 then
 
-	    	local shoot = bullet.new(shooterSheet, sheetInfo:getFrameIndex("laserRed01"), 0, -600, 5)
+	    	local shoot = bullet.new(shooterSheet, sheetInfo:getFrameIndex("spaceMissiles_001"), 0, -600, 5)
 	    	shoot:create(player.ship.x, player.ship.y, "playerLaser")
 	    	physics.addBody(shoot.image, "kinematic")
 			shoot.image:setLinearVelocity(0, shoot.speedPerSecond)
