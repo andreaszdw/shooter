@@ -32,15 +32,20 @@ local uiGroup = display.newGroup()
 
 local stick
 
-local topText = display.newText( "Hello World!", display.contentWidth/2, 150, "assets/fonts/kenvector_future.ttf", 100 )
+local topText = display.newText( uiGroup, "", display.contentWidth/2, 150, "assets/fonts/kenvector_future.ttf", 100 )
 
 local gradient = {
     type="gradient",
-    color1={1, 1, 1}, color2={0.1, 1, 1}, direction="down"
+    color1={1, 0, 0}, color2={1, 1, 0}, direction="down"
 }
 
 topText:setFillColor(gradient)
 system.activate("multitouch")
+
+-----------------------------------------------------------
+local function loadLevel()
+
+end
 
 -----------------------------------------------------------
 local function loadEnemys()
@@ -241,6 +246,7 @@ function scene:create(event)
 	counterA = 0
 	counterB = 0
 
+	loadLevel()
 	loadEnemys()
 
 	physics.start()
