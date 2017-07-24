@@ -4,7 +4,8 @@
 --
 -----------------------------------------------------------
 
-local vector = require ("vector")
+local vector = require("vector")
+local json = require("json")
 
 local enemy = {}
 local enemy_mt = { __index = enemy }	-- metatable
@@ -19,6 +20,7 @@ function enemy.new(imagesheet, frame, speed, health)
 		ship = 0,
 		speedPerSecond = speed or 50,
 		health = health,
+		paths = {},
 		path = {},
 		nextWayPoint = 1,
 		newTransition = true,
@@ -27,9 +29,23 @@ function enemy.new(imagesheet, frame, speed, health)
 	return setmetatable(newEnemy, enemy_mt)
 end
 
------------------------------------------------------------
+
 -- create the enemy
+-----------------------------------------------------------
 function enemy:create(x, y, group)
+
+	local filename = system.pathForFile("assets/enemy/green1.json")
+	local decoded, pos, msg = json.decodeFile( filename )
+ 
+	if not decoded then
+	    print( "Decode failed at "..tostring(pos)..": "..tostring(msg) )
+	else
+	    print( "File successfully decoded!" )
+	end
+
+	for i in pairs(decoded.attack) do
+		print(decoded.attack[i].x .. decoded.attack[i].y)
+	end
 
 	-- the image
 	self.ship = display.newImage(self.imagesheet, self.frame)
@@ -55,6 +71,10 @@ function enemy:create(x, y, group)
 		self.health = self.health - x
 
 	end
+end
+
+-----------------------------------------------------------
+function enemy:load(file)
 
 end
 

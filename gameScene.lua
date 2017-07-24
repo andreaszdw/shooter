@@ -11,6 +11,7 @@ local fireButton = require("fireButton")
 local bullet = require("bullet")
 local enemy = require("enemy")
 local catmullromspline = require("catmullromspline")
+local Level = require("level")
 
 local sheetInfo = require("sheet") --("shooterSheet")
 local shooterSheet = graphics.newImageSheet ("assets/images/sheet.png", sheetInfo:getSheet()) --( "assets/images/shooterSheet.png", sheetInfo:getSheet() )
