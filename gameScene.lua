@@ -32,6 +32,7 @@ local mainGroup = display.newGroup()
 local uiGroup = display.newGroup()
 
 local stick
+local stickGun
 
 local topText = display.newText( uiGroup, "", display.contentWidth/2, 150, "assets/fonts/kenvector_future.ttf", 100 )
 
@@ -223,6 +224,22 @@ function scene:create(event)
 		B = 0
 	})
 
+	-- create stick for gun
+	stickGun = StickLib.NewStick(
+	{
+		x = display.contentWidth*.85,
+		y = display.contentHeight*.85,
+		imageSheet = shooterSheet,
+		imageMain = sheetInfo:getFrameIndex("joystickMain"),
+		imageThumb = sheetInfo:getFrameIndex("joystickThumb"),
+		scale = 2.0,
+		borderSize = 64,
+		snapBackSpeed = .2,
+		R = 255,
+		G = 0, 
+		B = 0
+	})
+
 	-- the starfield
 	starfield = Starfield.new (600, 2, 2)
 	starfield:create(backGroup)
@@ -243,6 +260,7 @@ function scene:create(event)
 	-- joystick
 	uiGroup:insert(stick)
 	player:setStickMaxDistance(stick:getMaxDistance())
+	uiGroup:insert(stickGun)
 
 	counterA = 0
 	counterB = 0
